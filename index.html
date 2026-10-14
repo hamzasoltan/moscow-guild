@@ -56,6 +56,18 @@
 @media(max-width:850px){.theme-toggle{width:40px;height:40px}}
 @media(max-width:650px){.theme-toggle{margin-right:auto}.links.open{background:var(--bg)}}
 
+
+/* Arabic typography tuning for Reem Kufi: prevent glyph collisions */
+body{font-family:"Reem Kufi",Tahoma,Arial,sans-serif;font-weight:400;letter-spacing:normal}
+h1,h2,h3,h4,p,a,button,.tag,.eyebrow,.note,.intro,.heading,.person,.dept,.panel,.chip,.join,.footer{letter-spacing:normal}
+h1{line-height:1.55;letter-spacing:0!important;margin-top:24px;margin-bottom:20px;font-weight:700}
+h2{line-height:1.6;letter-spacing:0!important}
+h3{line-height:1.65;letter-spacing:0!important}
+.intro{line-height:2.35;font-weight:400}
+.heading p,.person p,.dept p,.note{line-height:2;font-weight:400}
+.btn,.links a,.theme-toggle{line-height:1.8}
+@media(max-width:850px){h1{line-height:1.55;letter-spacing:0!important}.heading h2{line-height:1.6}}
+
 </style>
 </head>
 <body><div id="snow-layer" aria-hidden="true"></div>
