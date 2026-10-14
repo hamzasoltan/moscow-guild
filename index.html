@@ -98,8 +98,9 @@
 
 const themeToggle=document.getElementById('theme-toggle');
 const root=document.documentElement;
-function setTheme(theme){root.dataset.theme=theme;const light=theme==='light';themeToggle.innerHTML=light?'☾ <span>دارك مود</span>':'☼ <span>لايت مود</span>';themeToggle.setAttribute('aria-label',light?'تفعيل الوضع الداكن':'تفعيل الوضع الفاتح');themeToggle.title=light?'تفعيل الوضع الداكن':'تفعيل الوضع الفاتح';const meta=document.querySelector('meta[name="theme-color"]');if(meta)meta.content=light?'#F3F8FC':'#0A1220'}
-setTheme('dark');
+function setTheme(theme){root.dataset.theme=theme;const light=theme==='light';themeToggle.innerHTML=light?'☾ <span>دارك مود</span>':'☼ <span>لايت مود</span>';themeToggle.setAttribute('aria-label',light?'تفعيل الوضع الداكن':'تفعيل الوضع الفاتح');themeToggle.title=light?'تفعيل الوضع الداكن':'تفعيل الوضع الفاتح';const meta=document.querySelector('meta[name="theme-color"]');if(meta)meta.content=light?'#F3F8FC':'#0A1220';try{localStorage.setItem('moscow-guild-theme',theme)}catch(e){}}
+let savedTheme='dark';try{savedTheme=localStorage.getItem('moscow-guild-theme')||'dark'}catch(e){}
+setTheme(savedTheme==='light'?'light':'dark');
 themeToggle.addEventListener('click',()=>setTheme(root.dataset.theme==='light'?'dark':'light'));
 
 const snowLayer=document.getElementById('snow-layer');
