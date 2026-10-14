@@ -13,9 +13,27 @@
 @media(max-width:650px){.container{width:calc(100% - 32px)}.nav{height:70px}.menu{display:block}.links{display:none;position:absolute;top:69px;right:0;left:0;background:#0a1220fa;padding:12px 20px 18px;flex-direction:column;gap:0;border-bottom:1px solid var(--border)}.links.open{display:flex}.links a{padding:11px 3px;border-bottom:1px solid #24364f88;font-size:12px}.links a:last-child{border:0}.header-join{margin-right:auto;font-size:10px;padding:9px 11px}.hero{padding-top:35px}.hero-grid{grid-template-columns:1fr;gap:25px}.art{height:270px;grid-row:1}.snow{width:110px}.art:before{width:170px;height:170px}.hero h1{font-size:clamp(34px,10vw,46px);letter-spacing:-1.5px}.intro{font-size:12px}.actions{flex-direction:column;align-items:stretch}.actions .btn{width:100%}.stats{grid-template-columns:1fr;gap:9px}.stat{padding:14px}.section{padding-top:57px}.heading{margin-bottom:20px}.heading h2{font-size:27px}.heading p{font-size:11px}.symbol{font-size:31px}.people{gap:9px;grid-template-columns:1fr 1fr}.person{padding:14px;min-height:170px}.person h3{font-size:15px;line-height:1.7}.person p{font-size:9px}.tag{font-size:8px;padding:4px 6px}.role-icon{width:31px;height:31px;font-size:16px}.foot{font-size:7px;letter-spacing:1px}.dept{padding:15px}.panel{padding:20px 17px}.members{gap:7px}.chip{font-size:10px;padding:8px 9px}.join{align-items:stretch;flex-direction:column;padding:25px 21px;gap:17px}.join h2{font-size:24px}.join-btn{width:100%}.footer-inner{flex-wrap:wrap}.footer-inner>small{width:100%;text-align:center;border-top:1px solid #24364f88;padding-top:12px}.footer-inner>a:last-child{margin-right:auto}}
 @media(max-width:380px){.header-join{display:none}.people{grid-template-columns:1fr}.person{min-height:160px}.person h3{font-size:18px}}
 @media(prefers-reduced-motion:reduce){*,*:before,*:after{scroll-behavior:auto!important;animation:none!important;transition:none!important}}
+
+/* Subtle diagonal snowfall */
+#snow-layer{position:fixed;inset:0;pointer-events:none;overflow:hidden;z-index:50;opacity:.58;contain:strict}
+.snowflake{position:absolute;top:-12vh;left:var(--x);color:#b7d9f7;font-size:var(--size);opacity:var(--alpha);text-shadow:0 0 9px #7cc8f255;animation:snow-fall var(--duration) linear var(--delay) infinite;will-change:transform}
+@keyframes snow-fall{0%{transform:translate3d(0,-8vh,0) rotate(0deg)}100%{transform:translate3d(-13vw,120vh,0) rotate(260deg)}}
+/* Portrait-ready leadership cards */
+.person{padding:14px;min-height:0;display:flex;flex-direction:column;gap:0}
+.person-photo{position:relative;width:100%;aspect-ratio:4/3;min-height:135px;max-height:240px;overflow:hidden;border:1px solid #365b7d;border-radius:12px;background:radial-gradient(ellipse at 50% 25%,#2d5474 0%,#182b43 48%,#101b2e 100%);display:grid;place-items:center;margin-bottom:14px}
+.person-photo:before,.person-photo:after{content:"";position:absolute;border:1px solid #7cc8f226;border-radius:50%;width:72%;aspect-ratio:1}
+.person-photo:after{width:48%}
+.person-photo img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:center;z-index:1}
+.person-photo span{position:relative;z-index:2;font-size:10px;letter-spacing:1px;color:#9dbbd4;background:#101b2ebd;padding:7px 10px;border-radius:20px}
+.person .row{order:0}.person-photo{order:1}.person h3{order:2}.person p{order:3}.person .foot{order:4;margin-top:auto}
+.person h3{margin-top:0}
+.site-quicklinks{display:flex;gap:12px;flex-wrap:wrap;margin-top:14px}
+.site-quicklinks .btn{min-width:150px}
+@media(max-width:650px){.person-photo{aspect-ratio:5/4;min-height:120px}.site-quicklinks{flex-direction:column}.site-quicklinks .btn{width:100%}}
+@media(prefers-reduced-motion:reduce){#snow-layer{display:none}.snowflake{animation:none}}
 </style>
 </head>
-<body>
+<body><div id="snow-layer" aria-hidden="true"></div>
 <svg aria-hidden="true" width="0" height="0" style="position:absolute"><symbol id="snowflake" viewBox="0 0 100 100"><g fill="none" stroke="#7CC8F2" stroke-width="4.3" stroke-linecap="round" stroke-linejoin="round"><path d="M50 7v86M12.8 28.5l74.4 43M12.8 71.5l74.4-43"/><path d="M50 7l-9 10m9-10 9 10M50 93l-9-10m9 10 9-10"/><path d="M12.8 28.5l13.5 1.2m-13.5-1.2 4.1 12.7M87.2 71.5l-13.5-1.2m13.5 1.2-4.1-12.7M12.8 71.5l13.5-1.2m-13.5 1.2 4.1-12.7M87.2 28.5l-13.5 1.2m13.5-1.2-4.1 12.7M35 24l15 9 15-9M35 76l15-9 15 9"/></g><circle cx="50" cy="50" r="7" fill="#B7C4FF"/><circle cx="50" cy="50" r="12" stroke="#B7C4FF" stroke-opacity=".45" stroke-width="1.5"/></symbol></svg>
 <header class="header"><div class="container nav">
 <a class="brand" href="#home" aria-label="نقابة موسكو"><svg class="mark"><use href="#snowflake"/></svg><span><strong>نقابة موسكو</strong><small>MOSCOW GUILD</small></span></a>
@@ -28,16 +46,16 @@
 <div class="eyebrow"><span class="dot"></span> مجتمع نقابة موسكو <span>ギルド</span></div>
 <h1>حيث يجتمع <span class="gradient">الصقيع</span><br>وتبدأ الأساطير.</h1>
 <p class="intro">مرحبًا بك في نقابة موسكو؛ تعرّف على القيادة والوزارات والمشرفين، وكن على اطلاع بكل جديد من خلال رابط الإعلانات الرسمي.</p>
-<div class="actions"><a class="btn primary" href="https://chat.whatsapp.com/HggpdnzRK6g3Uwb3inh3Nm?s=cl&p=i&ilr=4&iam=0" target="_blank" rel="noopener noreferrer">انضم إلى موسكو ↗</a><a class="btn secondary" href="#leadership">اكتشف النقابة ↓</a></div><div class="note">❄ هوية واحدة، وقيادة تجمعنا.</div>
+<div class="site-quicklinks"><a class="btn secondary" href="#official-links" data-pending-url="community">مجتمع موسكو</a><a class="btn primary" href="#official-links" data-pending-url="guild">نقابة موسكو</a></div><div class="actions"><a class="btn primary" href="https://chat.whatsapp.com/HggpdnzRK6g3Uwb3inh3Nm?s=cl&p=i&ilr=4&iam=0" target="_blank" rel="noopener noreferrer">انضم إلى موسكو ↗</a><a class="btn secondary" href="#leadership">اكتشف النقابة ↓</a></div><div class="note">❄ هوية واحدة، وقيادة تجمعنا.</div>
 </div><div class="art" aria-label="شعار ندفة الثلج"><span class="art-label top">MOSCOW • GUILD</span><span class="art-label bottom">EST. ❄ COMMUNITY</span><svg class="snow"><use href="#snowflake"/></svg><span class="spark s1">✳</span><span class="spark s2">❄</span><span class="spark s3">✧</span></div></div></section>
 <section class="container stats" aria-label="ملخص النقابة"><div class="stat"><span class="stat-icon">♜</span><div><strong>القيادة العليا</strong><small>توجيه وإدارة النقابة</small></div></div><div class="stat"><span class="stat-icon">❖</span><div><strong>الوزارات</strong><small>تنظيم الخدمات والمهام</small></div></div><div class="stat"><span class="stat-icon">❄</span><div><strong>فريق الإشراف</strong><small>متابعة المجتمع وتنظيمه</small></div></div></section>
 <section class="container section" id="leadership"><div class="heading"><div><span class="kicker">01 / LEADERSHIP</span><h2>عُليا النقابة</h2><p>الأسماء والمسؤوليات الأساسية في نقابة موسكو.</p></div><span class="symbol">❄</span></div>
 <div class="people">
-<article class="person featured"><div class="row"><span class="role-icon">♛</span><span class="tag">المؤسس</span></div><h3>ميناتو</h3><p>مؤسس نقابة موسكو</p><div class="foot"><span>FOUNDER</span><span>❄</span></div></article>
-<article class="person"><div class="row"><span class="role-icon">♜</span><span class="tag">القائد</span></div><h3>ناغي ~ كانيكي</h3><p>قيادة النقابة</p><div class="foot"><span>LEADER</span><span>❄</span></div></article>
-<article class="person"><div class="row"><span class="role-icon">✦</span><span class="tag">النائب</span></div><h3>هانزو - ميساكي</h3><p>نائب القيادة</p><div class="foot"><span>DEPUTY</span><span>❄</span></div></article>
-<article class="person vacant"><div class="row"><span class="role-icon">◇</span><span class="tag">المستشار</span></div><h3>المقعد متاح</h3><p>لم يُحدّد الاسم بعد</p><div class="foot"><span>ADVISOR</span><span>❄</span></div></article>
-<article class="person"><div class="row"><span class="role-icon">✧</span><span class="tag">السفيرة</span></div><h3>ماوماو</h3><p>تمثيل النقابة والتواصل</p><div class="foot"><span>AMBASSADOR</span><span>❄</span></div></article>
+<article class="person featured"><div class="person-photo"><span>مساحة الصورة</span></div><div class="row"><span class="role-icon">♛</span><span class="tag">المؤسس</span></div><h3>ميناتو</h3><p>مؤسس نقابة موسكو</p><div class="foot"><span>FOUNDER</span><span>❄</span></div></article>
+<article class="person"><div class="person-photo"><span>مساحة الصورة</span></div><div class="row"><span class="role-icon">♜</span><span class="tag">القائد</span></div><h3>ناغي ~ كانيكي</h3><p>قيادة النقابة</p><div class="foot"><span>LEADER</span><span>❄</span></div></article>
+<article class="person"><div class="person-photo"><span>مساحة الصورة</span></div><div class="row"><span class="role-icon">✦</span><span class="tag">النائب</span></div><h3>هانزو - ميساكي</h3><p>نائب القيادة</p><div class="foot"><span>DEPUTY</span><span>❄</span></div></article>
+<article class="person vacant"><div class="person-photo"><span>مساحة الصورة</span></div><div class="row"><span class="role-icon">◇</span><span class="tag">المستشار</span></div><h3>المقعد متاح</h3><p>لم يُحدّد الاسم بعد</p><div class="foot"><span>ADVISOR</span><span>❄</span></div></article>
+<article class="person"><div class="person-photo"><span>مساحة الصورة</span></div><div class="row"><span class="role-icon">✧</span><span class="tag">السفيرة</span></div><h3>ماوماو</h3><p>تمثيل النقابة والتواصل</p><div class="foot"><span>AMBASSADOR</span><span>❄</span></div></article>
 </div></section>
 <section class="container section" id="departments"><div class="heading"><div><span class="kicker">02 / DEPARTMENTS</span><h2>الوزارات</h2><p>كل وزارة لها دور واضح في تنظيم شؤون النقابة.</p></div><span class="symbol">⌘</span></div>
 <div class="people departments">
@@ -51,6 +69,12 @@
 </main>
 <footer class="footer"><div class="container footer-inner"><a class="brand" href="#home"><svg class="mark"><use href="#snowflake"/></svg><span><strong>نقابة موسكو</strong><small>MOSCOW GUILD</small></span></a><small>© <span id="year"></span> نقابة موسكو. جميع الحقوق محفوظة.</small><a href="#home"><small>العودة للأعلى ↑</small></a></div></footer>
 <script>
+
+const snowLayer=document.getElementById('snow-layer');
+if(snowLayer && !window.matchMedia('(prefers-reduced-motion: reduce)').matches){
+  for(let i=0;i<32;i++){const flake=document.createElement('span');flake.className='snowflake';flake.textContent=i%4===0?'✧':'❄';flake.style.setProperty('--x',Math.random()*110+'vw');flake.style.setProperty('--size',(8+Math.random()*10)+'px');flake.style.setProperty('--alpha',(0.18+Math.random()*0.42).toFixed(2));flake.style.setProperty('--duration',(12+Math.random()*20)+'s');flake.style.setProperty('--delay',(-Math.random()*28)+'s');snowLayer.appendChild(flake)}
+}
+
 const menu=document.getElementById('menu'),links=document.getElementById('links');
 menu.addEventListener('click',()=>{const open=links.classList.toggle('open');menu.setAttribute('aria-expanded',String(open));menu.setAttribute('aria-label',open?'إغلاق القائمة':'فتح القائمة')});
 links.querySelectorAll('a').forEach(a=>a.addEventListener('click',()=>{links.classList.remove('open');menu.setAttribute('aria-expanded','false')}));
