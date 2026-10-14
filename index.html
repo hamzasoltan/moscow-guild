@@ -31,6 +31,31 @@
 .site-quicklinks .btn{min-width:150px}
 @media(max-width:650px){.person-photo{aspect-ratio:5/4;min-height:120px}.site-quicklinks{flex-direction:column}.site-quicklinks .btn{width:100%}}
 @media(prefers-reduced-motion:reduce){#snow-layer{display:none}.snowflake{animation:none}}
+
+.theme-toggle{display:inline-flex;align-items:center;justify-content:center;gap:7px;white-space:nowrap;padding:10px 12px;border:1px solid var(--border);border-radius:12px;background:var(--surface);color:var(--blue);font:700 11px Alexandria,Tahoma,sans-serif;cursor:pointer;transition:background .2s,border-color .2s}
+.theme-toggle:hover{border-color:var(--blue);background:var(--surface2)}
+:root[data-theme="light"]{color-scheme:light;--bg:#F3F8FC;--surface:#FFFFFF;--surface2:#E7F3FB;--border:#C7D9E8;--text:#15283B;--muted:#5D748A;--blue:#278FC5;--lav:#687FC9;--green:#258B65}
+:root[data-theme="light"] .header{background:#F3F8FCEB}
+:root[data-theme="light"] .secondary{background:#FFFFFF;border-color:#B7CCDE;color:#15283B}
+:root[data-theme="light"] .menu{color:var(--text)}
+:root[data-theme="light"] .links{background:#F3F8FCFA}
+:root[data-theme="light"] .gradient{background-image:linear-gradient(100deg,#15283B,#278FC5 60%,#687FC9)}
+:root[data-theme="light"] .art{background:radial-gradient(ellipse at center,#D7EBF8,#E8F3FA 48%,#F3F8FC 80%);box-shadow:0 22px 70px #193d5814;border-color:#C7D9E8}
+:root[data-theme="light"] .stat{background:linear-gradient(135deg,#FFFFFF,#F0F7FC)}
+:root[data-theme="light"] .stat-icon,:root[data-theme="light"] .dept-icon{background:#E5F3FC;border-color:#C7DFF0}
+:root[data-theme="light"] .person{background:linear-gradient(145deg,#FFFFFF,#EDF5FB)}
+:root[data-theme="light"] .featured{background:linear-gradient(145deg,#E0F1FC,#F5FAFE)}
+:root[data-theme="light"] .foot{border-color:#C7D9E8;color:#6B849A}
+:root[data-theme="light"] .panel{background:linear-gradient(110deg,#E7F3FB,#F5FAFE);border-color:#C7D9E8}
+:root[data-theme="light"] .emblem{background:#E1F1FB;border-color:#B9D7EA}
+:root[data-theme="light"] .chip{background:#FFFFFF;border-color:#C7D9E8}
+:root[data-theme="light"] .join{background:linear-gradient(105deg,#E6F3FC,#F4F9FD 55%,#E8F2FA);border-color:#C7D9E8}
+:root[data-theme="light"] .join-meta,:root[data-theme="light"] .note{color:#5D748A}
+:root[data-theme="light"] .art-label{color:#5D748A}
+:root[data-theme="light"] .eyebrow{border-color:#C7D9E8}
+@media(max-width:850px){.theme-toggle span{display:none}.theme-toggle{padding:9px 12px}}
+@media(max-width:650px){.theme-toggle{margin-right:auto}.links.open{background:var(--bg)}}
+
 </style>
 </head>
 <body><div id="snow-layer" aria-hidden="true"></div>
@@ -39,7 +64,7 @@
 <a class="brand" href="#home" aria-label="نقابة موسكو"><svg class="mark"><use href="#snowflake"/></svg><span><strong>نقابة موسكو</strong><small>MOSCOW GUILD</small></span></a>
 <button class="menu" id="menu" aria-label="فتح القائمة" aria-expanded="false">☰</button>
 <nav class="links" id="links" aria-label="التنقل"><a href="#home">الرئيسية</a><a href="#leadership">القيادة</a><a href="#departments">الوزارات</a><a href="#supervisors">المشرفون</a><a href="#official-links">الروابط</a></nav>
-<a class="btn primary header-join" href="https://chat.whatsapp.com/HggpdnzRK6g3Uwb3inh3Nm?s=cl&p=i&ilr=4&iam=0" target="_blank" rel="noopener noreferrer">انضم للنقابة ↗</a>
+<button class="theme-toggle" id="theme-toggle" type="button" aria-label="تفعيل الوضع الفاتح" title="تفعيل الوضع الفاتح">☼ <span>لايت مود</span></button><a class="btn primary header-join" href="#official-links">انضم للنقابة ↗</a>
 </div></header>
 <main>
 <section class="hero" id="home"><div class="container hero-grid"><div>
@@ -69,6 +94,13 @@
 </main>
 <footer class="footer"><div class="container footer-inner"><a class="brand" href="#home"><svg class="mark"><use href="#snowflake"/></svg><span><strong>نقابة موسكو</strong><small>MOSCOW GUILD</small></span></a><small>© <span id="year"></span> نقابة موسكو. جميع الحقوق محفوظة.</small><a href="#home"><small>العودة للأعلى ↑</small></a></div></footer>
 <script>
+
+
+const themeToggle=document.getElementById('theme-toggle');
+const root=document.documentElement;
+function setTheme(theme){root.dataset.theme=theme;const light=theme==='light';themeToggle.innerHTML=light?'☾ <span>دارك مود</span>':'☼ <span>لايت مود</span>';themeToggle.setAttribute('aria-label',light?'تفعيل الوضع الداكن':'تفعيل الوضع الفاتح');themeToggle.title=light?'تفعيل الوضع الداكن':'تفعيل الوضع الفاتح';const meta=document.querySelector('meta[name="theme-color"]');if(meta)meta.content=light?'#F3F8FC':'#0A1220'}
+setTheme('dark');
+themeToggle.addEventListener('click',()=>setTheme(root.dataset.theme==='light'?'dark':'light'));
 
 const snowLayer=document.getElementById('snow-layer');
 if(snowLayer && !window.matchMedia('(prefers-reduced-motion: reduce)').matches){
